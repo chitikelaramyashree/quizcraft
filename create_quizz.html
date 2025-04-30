@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Quiz</title>
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"> -->
+  <style>
+    body {
+      background: #f7f8fa;
+      font-family:  Arial, sans-serif;
+      margin:0;
+    }
+    nav {
+      background-color: #715771;
+      color: white;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+    }
+    .quiz-builder-container {
+      max-width: 750px;
+      margin: 32px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 24px #0001;
+      padding: 36px 40px 24px 40px;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    input[type="text"], textarea, select {
+      width: 100%;
+      padding: 12px 5px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      margin-bottom: 18px;
+      font-size: 1rem;
+      background: #fafbfc;
+      transition: border 0.2s;
+    }
+    input[type="text"]:focus, textarea:focus, select:focus {
+      border: 1.5px solid #715771;
+      outline: none;
+    }
+    textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+    .questions-section {
+      margin-top: 24px;
+    }
+    .questions-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .add-btn {
+      background: #715771;
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.2s;
+    }
+    .add-btn:hover {
+      background: #a58ca5;
+    }
+    .save-btn {
+      margin-top: 28px;
+      width: 100%;
+      background: #715771;
+      color: #fff;
+      border: none;
+      padding: 14px 0;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .save-btn:hover {
+      background: #715771;
+    }
+    .question-card {
+      border: 2px dashed #e5e7eb;
+      border-radius: 10px;
+      padding: 20px 20px 10px 20px;
+      margin-bottom: 20px;
+      position: relative;
+      background: #fcfcfe;
+    }
+    .question-card .delete-icon {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      color: #a84545;
+      cursor: pointer;
+      font-size: 1.3rem;
+      transition: color 0.2s;
+    }
+    .question-card .delete-icon:hover {
+      color: #b91c1c;
+    }
+    .answers-list {
+      margin-top: 14px;
+    }
+    .answer-option {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+    .answer-option input[type="radio"] {
+      margin-right: 8px;
+      /* accent-color: #576e71; */
+    }
+    .answer-option input[type="text"] {
+      flex: 1;
+      margin-right: 6px;
+    }
+    .answer-option .delete-answer {
+      color: #ef4444;
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .answer-option .delete-answer:hover {
+      color: #b91c1c;
+    }
+    @media (max-width: 800px) {
+      .quiz-builder-container {
+        padding: 20px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">&lt; BACK TO HOMEPAGE</a>
+  </nav>
+
+  <div class="quiz-builder-container">
+    <h2>Create Quiz</h2>
+    <form id="quizForm" autocomplete="off">
+      <label for="quizTitle">Quiz Title</label>
+      <input type="text" id="quizTitle" name="title" placeholder="Enter quiz title" required>
+
+      <label for="quizDescription">Description (Optional)</label>
+      <textarea id="quizDescription" name="description" placeholder="Enter quiz description" style=" font-family:  Arial, sans-serif;"></textarea>
+
+      <label for="quizCategory">Category (Optional)</label>
+      <select id="quizCategory" name="category">
+        <option value="">Select category</option>
+        <option>Science</option>
+        <option>History</option>
+        <option>Geography</option>
+        <option>Entertainment</option>
+        <option>Sports</option>
+        <option>Technology</option>
+        <option>Art</option>
+        <option>Literature</option>
+        <option>Music</option>
+        <option>Movies</option>
+        <option>General Knowledge</option>
+      </select>
+
+      <hr style="margin:24px 0; border-color:#f2f2f2;">
+
+      <div class="questions-section">
+        <div class="questions-header">
+          <span style="font-size:1.2rem;font-weight:600;">Questions</span>
+          <button type="button" class="add-btn" onclick="addQuestion()">
+            <span>+</span> Add Question
+          </button>
+        </div>
+        <div id="questionsArea"></div>
+      </div>
+
+      <button type="submit" class="save-btn">
+        <span>&#10003;</span> Save Quiz
+      </button>
+    </form>
+  </div>
+
+  <script>
+    // Quiz builder state
+    let questions = [
+      {
+        text: "",
+        difficulty: "Medium",
+        answers: [
+          { text: "Answer option 1", isCorrect: true },
+          { text: "Answer option 2", isCorrect: false },
+          { text: "Answer option 3", isCorrect: false }
+        ]
+      }
+    ];
+
+    function renderQuestions() {
+      const questionsArea = document.getElementById('questionsArea');
+      questionsArea.innerHTML = questions.map((q, idx) => `
+        <div class="question-card" data-qidx="${idx}">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-weight:600;font-size:1.1rem;">Question ${idx+1}</span>
+            ${questions.length > 1 ? `<span class="delete-icon" title="Delete question" onclick="removeQuestion(${idx})">&#128465;</span>` : ''}
+          </div>
+          <div style="margin-top:12px;">
+            <label>Question Text</label>
+            <input type="text" placeholder="Enter your question" value="${escapeHTML(q.text)}" oninput="updateQuestionText(${idx}, this.value)">
+          </div>
+          <div>
+            <label>Difficulty (Optional)</label>
+            <select onchange="updateDifficulty(${idx}, this.value)">
+              <option${q.difficulty === "Easy" ? " selected" : ""}>Easy</option>
+              <option${q.difficulty === "Medium" ? " selected" : ""}>Medium</option>
+              <option${q.difficulty === "Hard" ? " selected" : ""}>Hard</option>
+            </select>
+          </div>
+          <div class="answers-list">
+            <label>Answers (select the correct one)</label>
+            ${q.answers.map((a, aidx) => `
+              <div class="answer-option">
+                <input type="radio" name="correct${idx}" ${a.isCorrect ? "checked" : ""} onchange="setCorrectAnswer(${idx},${aidx})">
+                <input type="text" value="${escapeHTML(a.text)}" placeholder="Answer option ${aidx+1}" oninput="updateAnswerText(${idx},${aidx},this.value)">
+                ${q.answers.length > 3 ? `<button type="button" class="delete-answer" title="Delete answer" onclick="removeAnswer(${idx},${aidx})">&#10005;</button>` : ''}
+              </div>
+            `).join('')}
+            <button type="button" class="add-btn" style="margin-top:8px;" onclick="addAnswer(${idx})">
+              <span>+</span> Add Answer
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Helper to escape HTML
+    function escapeHTML(str) {
+      return String(str).replace(/[&<>"']/g, function (m) {
+        return ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        })[m];
+      });
+    }
+
+    // Question/Answer handlers
+    function addQuestion() {
+      questions.push({
+        text: "",
+        difficulty: "Medium",
+        answers: [
+          { text: "Answer option 1", isCorrect: true },
+          { text: "Answer option 2", isCorrect: false },
+          { text: "Answer option 3", isCorrect: false }
+        ]
+      });
+      renderQuestions();
+    }
+    function removeQuestion(idx) {
+      if (questions.length > 1) {
+        questions.splice(idx, 1);
+        renderQuestions();
+      }
+    }
+    function updateQuestionText(idx, value) {
+      questions[idx].text = value;
+    }
+    function updateDifficulty(idx, value) {
+      questions[idx].difficulty = value;
+    }
+    function addAnswer(qidx) {
+      if (questions[qidx].answers.length < 6) {
+        questions[qidx].answers.push({ text: `Answer option ${questions[qidx].answers.length+1}`, isCorrect: false });
+        renderQuestions();
+      }
+    }
+    function removeAnswer(qidx, aidx) {
+      if (questions[qidx].answers.length > 3) {
+        let wasCorrect = questions[qidx].answers[aidx].isCorrect;
+        questions[qidx].answers.splice(aidx, 1);
+        if (wasCorrect) questions[qidx].answers[0].isCorrect = true;
+        renderQuestions();
+      }
+    }
+    function updateAnswerText(qidx, aidx, value) {
+      questions[qidx].answers[aidx].text = value;
+    }
+    function setCorrectAnswer(qidx, aidx) {
+      questions[qidx].answers.forEach((a, i) => a.isCorrect = (i === aidx));
+      renderQuestions();
+    }
+    document.getElementById('quizForm').onsubmit = function(e) {
+    e.preventDefault();
+
+    // Collect form data as before...
+    const quizData = {
+        title: this.title.value,
+        description: this.description.value,
+        category: this.category.value,
+        questions: questions // your dynamic questions array
+    };
+
+    fetch('create_quizz.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(quizData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            // Optionally redirect or reload the explore section
+            window.location.href = 'index.html'; // or show a success message
+        } else {
+            alert('Error: ' + (data.error || 'Failed to save quiz'));
+        }
+    })
+    .catch(error => {
+        alert('Failed to save quiz');
+        console.error(error);
+    });
+};
+
+
+    // Initial render
+    renderQuestions();
+  </script>
+</body>
+</html>

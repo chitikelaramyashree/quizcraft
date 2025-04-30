@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuizCraft Header</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.header {
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  height: 64px;
+  display: flex;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: #7b5f7b;
+}
+
+.brand-name {
+  font-size: 1.60rem;
+  font-weight: bold;
+  color: #543e54;
+}
+
+.search-bar {
+  flex: 1;
+  max-width: 400px;
+  position: relative;
+  display: none;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.7rem 1rem 0.7rem 2.5rem;
+  border-radius: 9999px;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  outline: none;
+}
+
+.search-bar:focus-within input {
+  border-color: #AE93AE;
+  box-shadow: 0 0 0 1px #684968;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: #7b5f7b;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.btn-outline {
+  background: none;
+  border: 1px solid  #7b5f7b;
+  color: #7b5f7b;
+}
+.btn-primary {
+  background-color: #7b5f7b;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #a489a4;
+  color: #ffffff;
+  border: 1px solid  #7b5f7b;
+}
+
+@media (min-width: 768px) {
+  .search-bar {
+    display: block;
+  }
+}
+
+.hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+}
+.hero h1 {
+      font-size: 3.5rem;
+      color: #7b5f7b;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+     .button-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    /* .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 1px solid #7b5f7b;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    } */
+.brower-q{
+  border-radius: 15px;
+  padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 1px solid #7b5f7b;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+}
+.quiz-explore {
+  background-color:  rgba(123, 95, 123, 0.1);
+  padding: 2rem 1rem;
+}
+
+.quiz-explore__container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.quiz-explore__header {
+  margin-bottom: 1.5rem;
+}
+
+.quiz-explore__title {
+  font-size: 3rem;
+  font-weight: bold;
+  
+}
+
+.quiz-explore__subtitle {
+  color: #6c496c;
+}
+
+.quiz-explore__categories {
+  margin: 1rem 0;
+}
+
+.quiz-explore__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.quiz-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.quiz-card h3 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  color: #111827; /* (Default dark color) */
+  transition: color 0.3s ease;
+}
+.quiz-card:hover {
+  transform: translateY(-8px); /* move slightly up */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* a stronger shadow on hover */
+}
+
+.quiz-card:hover h3 {
+  color: #7b5f7b; /* change title color on hover */
+}
+
+.quiz-card p {
+  color: #444;
+  font-size: 0.9rem;
+}
+
+.quiz-meta {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.quiz-explore__footer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* optional */
+/* Leaderboard transitions */
+.leaderboard-item {
+    transition: all 0.3s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.leaderboard-list {
+    position: relative;
+    min-height: 200px;
+}
+
+.no-data {
+    padding: 2rem;
+    text-align: center;
+    color: #715771;
+    font-style: italic;
+}
+
+.error {
+    color: #ef4444;
+    text-align: center;
+    padding: 2rem;
+}
+
+
+
+/* Leaderboard Section */
+
+.leaderboard-section {
+  padding: 2rem 1rem;
+  background: #f8f9fc;
+}
+
+.section-title {
+  text-align: center;
+  color: #715771;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.leaderboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.leaderboard-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+.leaderboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f3f0fa;
+}
+
+.leaderboard-header .title {
+  font-size: 1.25rem;
+  color: #715771;
+  font-weight: 600;
+}
+
+.leaderboard-header .update-info {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.leaderboard-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  background: #fff;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.leaderboard-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 2px 8px rgba(113, 87, 113, 0.1);
+}
+
+.rank-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  font-weight: 600;
+}
+
+.rank-1 { background: #FFD700; color: #715771; }
+.rank-2 { background: #C0C0C0; color: #715771; }
+.rank-3 { background: #CD7F32; color: white; }
+.rank-default { background: #f3f0fa; color: #715771; }
+
+.user-info {
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.username {
+  font-weight: 600;
+  color: #715771;
+  margin-bottom: 0.25rem;
+}
+
+.stats {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.stat-value {
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+.correct-stat { color: #10b981; }
+.quizzes-stat { color: #6366f1; }
+
+.create-quiz-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+.create-quiz-card h3 {
+  color: #715771;
+  margin-bottom: 0.5rem;
+}
+.create-quiz-card p {
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+.create-quiz-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #715771;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.create-quiz-btn:hover {
+  background: #a480a4;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+
+.quiz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 0;
+}
+
+.quiz-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.quiz-category {
+    background: #8B5CF6;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.btn-play {
+    background: #8B5CF6;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+
+/* Explore Section */
+.quiz-explore__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.quiz-explore__title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #2d3748;
+}
+
+.quiz-explore__subtitle {
+    color: #718096;
+    margin-bottom: 2rem;
+}
+
+.quiz-explore__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+/* Quiz Card */
+.quiz-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.quiz-card:hover {
+    transform: translateY(-3px);
+}
+
+.quiz-card__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.quiz-card__category {
+    background: #715771;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+}
+
+.quiz-card__count {
+    color: #715771;
+    font-size: 0.875rem;
+}
+
+.quiz-card__title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: #715771;
+}
+
+.quiz-card__description {
+    color: #4c3b4c;
+    margin-bottom: 1rem;
+    min-height: 60px;
+}
+
+.quiz-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.quiz-card__date {
+    color: #715771;
+    font-size: 0.875rem;
+}
+
+.quiz-card__cta {
+    background: #715771;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.quiz-card__cta:hover {
+    background: #b390b3;
+}
+
+.error-message {
+    color: #ef4444;
+    text-align: center;
+    padding: 2rem;
+}
+
+
+.how-it-works-section {
+  background: rgba(123, 95, 123, 0.1);
+  padding: 3.5rem 1rem 3rem 1rem;
+  text-align: center;
+  /* margin-top: 3rem; */
+}
+
+.how-it-works-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.how-it-works-subtitle {
+  font-size: 1.15rem;
+  color: #666;
+  margin-bottom: 2.5rem;
+}
+
+.how-it-works-steps {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.how-it-works-step {
+  flex: 1 1 260px;
+  max-width: 320px;
+  min-width: 220px;
+  background: none;
+  padding: 0 1rem;
+}
+
+.how-it-works-circle {
+  width: 70px;
+  height: 70px;
+  background: #715771;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.2rem auto;
+  font-size: 2rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(120, 120, 200, 0.10);
+}
+
+.step-number {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.how-it-works-step h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.7rem;
+  color: #222;
+}
+
+.how-it-works-step p {
+  color: #666;
+  font-size: 1rem;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .how-it-works-steps {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+  .how-it-works-step {
+    max-width: 100%;
+  }
+}
+.footer {
+  border-top: 1px solid #e5e7eb;
+  background-color: white;
+  padding: 2rem 0;
+  font-family: sans-serif;
+  color: #6b7280;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .footer-top {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.footer-branding {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-branding {
+    text-align: left;
+  }
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #111827;
+  text-decoration: none;
+}
+
+.description {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 4rem;
+}
+
+.link-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.link-group h3 {
+  font-weight: 500;
+  color: #111827;
+}
+
+.link-group a {
+  font-size: 0.875rem;
+  text-decoration: none;
+  color: #6b7280;
+  transition: color 0.2s;
+}
+
+.link-group a:hover {
+  color: #715771 /* Tailwind's quiz-primary */
+}
+
+.footer-bottom {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <i data-lucide="book-open" class="icon"></i>
+      <span class="brand-name">QuizCraft</span>
+    </a>
+
+    <div class="search-bar">
+      <i data-lucide="search" class="search-icon"></i>
+      <input type="text" placeholder="Search quizzes..." class="search-input" />
+    </div>
+
+    <div class="auth-buttons" id="auth-buttons">
+      <!-- JS will inject buttons here -->
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Create, Share, and Play Quizzes on Any Topic</h1>
+  <div class="button-group">
+    <a href="browse.html" class="btn btn-outline brower-q" >Browse Quizzes</a>
+    <a href="create_quizz.html" class="btn btn-primary brower-q">
+      <i data-lucide="plus-circle"></i>
+      Create Quiz
+    </a>
+  </div>
+</section>
+
+<section class="quiz-explore">
+  <div class="quiz-explore__container">
+    <div class="quiz-explore__header">
+      <h2 class="quiz-explore__title">Explore Quizzes</h2>
+      <p class="quiz-explore__subtitle">
+        Find the perfect quiz to challenge yourself or learn something new.
+      </p>
+    </div>
+
+    <div id="quiz-categories" class="quiz-explore__categories">
+      <!-- Category filters can be added here -->
+    </div>
+
+    <div id="quiz-cards" class="quiz-explore__grid">
+      <!-- Quizzes will be dynamically inserted here -->
+    </div>
+
+    <div class="quiz-explore__footer">
+      <a href="browse.html" class="btn-outline">View All Quizzes</a>
+    </div>
+  </div>
+</section>
+
+<section class="leaderboard-section">
+  <h2 class="section-title">Top Quiz Masters</h2>
+  <div class="leaderboard-container">
+    <div class="leaderboard-card">
+      <div class="leaderboard-header">
+        <span class="title">Weekly Leaders</span>
+        <span class="update-info">Updates every 10 seconds</span>
+      </div>
+      <ul id="leaderboard-list" class="leaderboard-list">
+        <!-- Dynamic content -->
+      </ul>
+    </div>
+    <div class="create-quiz-card">
+      <h3>Create Your Own Quiz</h3>
+      <p>Share your knowledge and challenge others</p>
+      <a href="create_quizz.html" class="create-quiz-btn">
+        <svg class="icon"><!-- Your plus icon SVG --></svg>
+        Create Quiz
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="how-it-works-section">
+  <h2 class="how-it-works-title">How QuizCraft Works</h2>
+  <p class="how-it-works-subtitle">
+    Creating and playing quizzes has never been easier
+  </p>
+  <div class="how-it-works-steps">
+    <div class="how-it-works-step">
+      <div class="how-it-works-circle"><span class="step-number">1</span></div>
+      <h3>Create</h3>
+      <p>Build your quiz with our easy-to-use editor. Add questions, choices, and explanations.</p>
+    </div>
+    <div class="how-it-works-step">
+      <div class="how-it-works-circle"><span class="step-number">2</span></div>
+      <h3>Share</h3>
+      <p>Publish your quiz and share it with friends, classmates, or the world.</p>
+    </div>
+    <div class="how-it-works-step">
+      <div class="how-it-works-circle"><span class="step-number">3</span></div>
+      <h3>Play</h3>
+      <p>Take quizzes, earn points, and climb the leaderboard as you test your knowledge.</p>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-branding">
+        <a href="/" class="logo">QuizCraft</a>
+        <p class="description">
+          Create, share, and take quizzes on any topic you can imagine.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <div class="link-group">
+          <h3>Product</h3>
+          <a href="browse.html">Browse Quizzes</a>
+          <a href="create_quizz.html">Create Quiz</a>
+          <a href="#leaderboard">Leaderboard</a>
+        </div>
+        <div class="link-group">
+          <h3>Company</h3>
+          <a href="/about">About Us</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; <span id="year"></span> QuizCraft. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  lucide.createIcons();
+document.addEventListener('DOMContentLoaded', function() {
+    const quizCards = document.getElementById('quiz-cards');
+    
+    // Fetch quizzes from PHP endpoint
+    fetch('get_quizzes.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                quizCards.innerHTML = data.data.map(quiz => `
+                    <div class="quiz-card">
+                        <div class="quiz-card__header">
+                            <span class="quiz-card__category">${quiz.category || 'General'}</span>
+                            <span class="quiz-card__count">${quiz.question_count} Questions</span>
+                        </div>
+                        <h3 class="quiz-card__title">${quiz.title}</h3>
+                        <p class="quiz-card__description">${quiz.description || 'No description available'}</p>
+                        <div class="quiz-card__footer">
+                            <span class="quiz-card__date">${quiz.created_at}</span>
+                            <a href="take-quiz.php?id=${quiz.id}" class="quiz-card__cta">Start Quiz</a>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                quizCards.innerHTML = `<p class="error-message">${data.error}</p>`;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            quizCards.innerHTML = '<p class="error-message">Failed to load quizzes. Please try again later.</p>';
+        });
+});
+
+// Modify your leaderboard update function like this
+function updateLeaderboard() {
+    const list = document.getElementById('leaderboard-list');
+    const currentItems = Array.from(list.children);
+    
+    fetch('get_leaderboard.php')
+        .then(res => res.json())
+        .then(data => {
+            if (!data.success || !data.data.length) return;
+
+            // Preserve existing items if possible
+            data.data.forEach((user, index) => {
+                const existingItem = currentItems.find(item => 
+                    item.dataset.userId === user.id.toString()
+                );
+                
+                if (existingItem) {
+                    // Update existing item smoothly
+                    existingItem.querySelector('.score').textContent = `${user.score} pts`;
+                    existingItem.querySelector('.quizzes').textContent = `${user.quizzes} quizzes`;
+                    existingItem.style.order = index; // For ranking animation
+                } else {
+                    // Add new item with fade-in animation
+                    const newItem = document.createElement('li');
+                    newItem.className = 'leaderboard-item';
+                    newItem.dataset.userId = user.id;
+                    newItem.innerHTML = `
+                        <div class="rank-badge rank-${index + 1}">${index + 1}</div>
+                        <div class="user-info">
+                            <span class="username">${user.name}</span>
+                            <div class="stats">
+                                <span class="score">${user.score} pts</span>
+                                <span class="quizzes">${user.quizzes} quizzes</span>
+                            </div>
+                        </div>
+                    `;
+                    list.appendChild(newItem);
+                }
+            });
+        });
+}
+
+// Update every 10 seconds instead of 3
+setInterval(updateLeaderboard, 10000);
+
+
+
+
+</script>
+
+</body>
+</html>

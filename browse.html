@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BROWSE</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9fb;
+      color: #333;
+    }
+
+    nav {
+      background-color: #715771;
+      color: white;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 64px);
+      padding: 20px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin: 1.5rem 0 0 2rem;
+      color: #715771;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      color: #715771;
+      text-decoration: underline;
+    }
+
+    /* Quiz browse styles */
+    .quiz-browse__container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .quiz-browse__title {
+      font-size: 2rem;
+      color: #715771;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .quiz-explore__grid, .quiz-browse__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .quiz-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px #0001;
+      padding: 1.5rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .quiz-card:hover {
+      box-shadow: 0 4px 20px #8B5CF630;
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    .quiz-card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .quiz-card__category {
+      background: #967896;
+      color: #fff;
+      font-size: 0.95rem;
+      padding: 0.25em 1em;
+      border-radius: 999px;
+      font-weight: 500;
+    }
+
+    .quiz-card__count {
+      color: #715771;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .quiz-card__title {
+      font-size: 1.2rem;
+      color: #715771;
+      font-weight: 600;
+      margin: 0.5rem 0 0.3rem 0;
+    }
+
+    .quiz-card__description {
+      color: #0a080a;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      min-height: 48px;
+    }
+
+    .quiz-card__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .quiz-card__date {
+      color: #a1a1aa;
+      font-size: 0.95rem;
+    }
+
+    .quiz-card__cta {
+      background: #715771;
+      color: #fff;
+      padding: 0.5em 1.2em;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s;
+      font-size: 1rem;
+    }
+
+    .quiz-card__cta:hover {
+      background: #8f768f;
+    }
+
+    @media (max-width: 800px) {
+      .quiz-explore__grid, .quiz-browse__grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .quiz-browse__container {
+        padding: 1rem 0.5rem;
+      }
+      .back-link {
+        margin-left: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">&lt; BACK TO HOMEPAGE</a>
+  </nav>
+  <section class="quiz-browse">
+    <div class="quiz-browse__container">
+      <h2 class="quiz-browse__title">All Quizzes</h2>
+      <div id="all-quiz-cards" class="quiz-explore__grid"></div>
+    </div>
+  </section>
+  
+  <script>
+  fetch('get_quizzes.php')
+    .then(res => res.json())
+    .then(data => {
+      const quizzes = data.success ? data.data : data;
+      const quizGrid = document.getElementById('all-quiz-cards');
+      quizGrid.innerHTML = quizzes.map(quiz => `
+        <div class="quiz-card">
+          <div class="quiz-card__header">
+            <span class="quiz-card__category">${quiz.category || 'General'}</span>
+            <span class="quiz-card__count">${quiz.question_count} Questions</span>
+          </div>
+          <h3 class="quiz-card__title">${quiz.title}</h3>
+          <p class="quiz-card__description">${quiz.description || 'No description available'}</p>
+          <div class="quiz-card__footer">
+            <span class="quiz-card__date">${quiz.created_at}</span>
+            <a href="take-quiz.php?id=${quiz.id}" class="quiz-card__cta">Start Quiz</a>
+          </div>
+        </div>
+      `).join('');
+    });
+  </script>
+</body>
+</html>
